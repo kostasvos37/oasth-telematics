@@ -1,0 +1,146 @@
+
+body{
+  background-image: url('bg.jpg');
+  width:100%;
+}
+h1{
+
+	color: white;
+	font-size:200%;
+	float:center;
+	text-align: center;
+	font-family: sans-serif;
+}
+
+h2{
+
+	color:#1C3D5E;
+	float:center;
+	text-align: center;
+	font-family: sans-serif;
+}
+/*gia th navigation bar*/
+nav { 
+
+	width:100%;
+	height: 50px;
+	background: rgba(65, 94, 28, 0.8);
+	border-top: .25px solid #C483A2;
+	border-bottom: .25px solid #C483A2; 
+	position: sticky;
+	top: 0;
+}
+/*gia ta stoixeia ths baras*/
+nav ul{
+
+	display: flex;
+	float:none;
+	margin:0;
+	padding:0 0px;
+
+}
+
+nav ul li{
+
+	list-style: none;
+}
+/*gia ta grammata ths baras*/
+nav ul li a{
+
+	display: block;
+	color: #fff;
+	padding: 0 20px;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-weight: bold;
+	line-height:50px;
+	font-family: sans-serif;
+}
+/*gia na antidraei otan erxetai se epafh me to pontiki*/
+nav ul li a:hover{
+	
+	background-color: rgb(28,61,94,.8);
+	border-top: .25px solid #C483A2;
+	border-bottom: .25px solid	#C483A2; 
+}
+/*gia to xroma toy home*/
+nav ul li a.active{
+ 	
+ 	color: #fff;
+ 	background-color: #C483A2;
+}
+/*otan erxetai se epafi to pontiki me to home*/
+nav ul li a.active:hover{
+
+	background-color: 	rgb(28,61,94,.8);
+	border-top: .25px solid 	#C483A2;
+	border-bottom: .25px solid 	#C483A2; 
+}
+/*gia to dropdown na emfanizetai otan bazoyme to pontiki*/
+nav  li  div {     
+  visibility: hidden;
+  position: absolute;
+  background-color: 	#C483A2;
+  opacity: 0;
+}
+/*gia to dropdown*/
+nav  li:hover  div { 
+  visibility: visible;
+  opacity: 1;
+  min-width: 100px;
+}
+
+.country {
+	display: block;
+	color: #fff;
+	padding: 0 20px;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-weight: bold;
+	line-height:50px;
+	font-family: sans-serif;
+}
+/*container for form*/
+.insert_book {
+	
+	display:box;
+	margin:0 auto;
+	width: 400px;
+	height: 150px;
+	background-color: #C6F9F5;
+	border-radius :50px;
+}
+.center{
+
+	text-align: center;
+	font-family: sans-serif;
+	padding-top: 10px;
+}
+.box {
+	
+	display: box;
+	margin: 0 auto;
+	width: 400px;
+	height: 380px;
+	background-color: #C6F9F5;
+	border-radius :50px;
+}
+.update_copy {
+	
+	display: box;
+	margin: 0 auto;
+	width: 400px;
+	height: 250px;
+	background-color: #C6F9F5;
+	border-radius :50px;
+}
+.box_2 {
+	
+	display: box;
+	margin: 0 auto;
+	width: 400px;
+	height: 400px;
+	background-color: #C6F9F5;
+	border-radius :50px;
+}
+

@@ -1,0 +1,67 @@
+.booking-form-box {
+	background-color: rgb(28,61,94,.8);
+	float: none;
+	max-width: 500px;
+	border: 1px solid rgb(28,61,94,.8);
+	margin: 10% auto 0;
+
+}
+.radio-btn{
+	margin: 0 20px;
+}
+.radio-btn .btn{
+	margin:20px 10px 20px 0;
+	box-shadow:none;
+}
+.radio-btn .btn::after
+{
+	content: '';
+	height: 15px;
+	width:15px;
+	top: -2px;
+	left: -1px;
+	background-color: #fff;
+	position: relative;
+	display: inline-block;
+	border: 3px solid #fff;
+	visibility: visible;
+	border-radius: 50%;
+}
+.radio-btn .btn:checked::after
+{
+	content: '';
+	background-color: #000;
+	transition: 0.5s;
+	
+}
+.radio-btn span
+{
+	color: #fff;
+	margin-right: 5px;
+	font-size: 12px;
+}
+.booking-form
+{
+	padding:0 20px 20px;
+}
+.booking-form label
+{
+	margin-bottom:  5px;
+	margin-top: 10px;
+	font-size: 12px;
+	color: #fff;
+	font-family: sans-serif;
+	font-weight: bold;
+	
+}
+
+input::placeholder
+{
+	color: #fff;
+}
+
+.input-grp
+{
+	width: 200px;
+	display: inline-block;
+}
