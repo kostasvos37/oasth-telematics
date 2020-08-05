@@ -7,6 +7,26 @@ const MakeItem = function(X) {
 };
 
 
+/*
+<Text label = "Country" placeholder="Test" name = "test"/>
+        
+<Text label = "Year/Month/Day" placeholder="YYYY-MM-DD" name = "date"/>
+
+<Select label = "Resolution" name = "resolution" options = {["15", "30", "60"]}/>
+
+<div className="radio-btn">
+<input type="radio" className="btn" name="check" value = "Choice 1" checked onChange = {() => {}}/><span>Table</span>
+<input type="radio" className="btn" name="check" value = "Choice 2"/><span>Graph</span>
+
+</div>
+
+<div className="input-grp">
+        <button type="submit" className="btn btn-primary flight">Show Results</button>
+    </div>
+
+*/
+
+
 class Text extends Component{    
     render(){
         return(
@@ -40,6 +60,21 @@ class SearchView extends React.Component{
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleSelect = this.handleSubmit.bind(this);
+        this.state = {
+            stops : []
+        }
+    }
+
+    componentDidMount(){
+        const query = "http://feed.opendata.imet.gr:23577/itravel/devices.json"
+        fetch(query).then((response) => response.json())
+        .then(json => {
+            var returnedStops = []
+            for (var i in json){
+                returnedStops.push(json[i]["device_Name"])}
+                console.log(returnedStops)
+                this.setState({stops: returnedStops })
+        });
     }
 
     handleSubmit(event){
@@ -61,25 +96,9 @@ class SearchView extends React.Component{
             
         <div className="booking-form-box">
         <form className="booking-form" onSubmit = {this.handleSubmit}>
-
-        <Text label = "Country" placeholder="Test" name = "test"/>
         
-        <Text label = "Year/Month/Day" placeholder="YYYY-MM-DD" name = "date"/>
-        
-        <Select label = "Resolution" name = "resolution" options = {["15", "30", "60"]}/>
+        <Select label = "Stops" name = "stops" options = {this.state.stops}/>
       
-        <Select label = "Table" name = "Staseis" options = {["Stop 1", "Stop 2", "Stop 3"]}/>
-        
-        <div className="radio-btn">
-        <input type="radio" className="btn" name="check" value = "Choice 1" checked onChange = {() => {}}/><span>Table</span>
-        <input type="radio" className="btn" name="check" value = "Choice 2"/><span>Graph</span>
-        
-        </div>
-
-        <div className="input-grp">
-                <button type="submit" className="btn btn-primary flight">Show Results</button>
-            </div>
-
             
         </form>
         </div>
