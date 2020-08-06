@@ -20,10 +20,6 @@ const MakeItem = function(X) {
 
 </div>
 
-<div className="input-grp">
-        <button type="submit" className="btn btn-primary flight">Show Results</button>
-    </div>
-
 */
 
 
@@ -43,12 +39,12 @@ class Select extends Component{
     render(){
 
         return(
-            <div className="input-grp">
+            <React.Fragment>
             <label>{this.props.label}</label>
             <select className="custom-select" name ={this.props.name}>
                 {this.props.options.map(MakeItem)}
             </select>
-        </div>
+        </React.Fragment>
         )}
 }
 
@@ -61,26 +57,42 @@ class SearchView extends React.Component{
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleSelect = this.handleSubmit.bind(this);
         this.state = {
-            stops : []
+            stops : [],
+            coords : [],
+            fetchInProgress : false
         }
     }
 
     componentDidMount(){
         const query = "http://feed.opendata.imet.gr:23577/itravel/devices.json"
+
+        this.setState  ({fetchInProgress : true }) 
         fetch(query).then((response) => response.json())
         .then(json => {
             var returnedStops = []
+            var returnedCoords = []
             for (var i in json){
-                returnedStops.push(json[i]["device_Name"])}
-                console.log(returnedStops)
-                this.setState({stops: returnedStops })
+                returnedStops.push(json[i]["device_Name"])
+                returnedCoords.push([json[i]["lat"], json[i]["lon"]])
+            }
+            this.setState({stops: returnedStops })
+            this.setState({coords: returnedCoords })
+            this.setState  ({fetchInProgress : false }) 
         });
+
     }
 
     handleSubmit(event){
-
-        //TODO Implement
-
+        event.preventDefault()
+        var form = event.target.elements
+        var selection = form.stops.value
+        console.log(this.state.stops.indexOf(selection)+1)
+        
+        const query = `http://147.102.19.45:8080/services/getDeviceCoords/12${this.state.stops.indexOf(selection)+1}`
+        fetch(query).then((response) => response.json())
+        .then(json => {
+            console.log(json)
+        });
     }
 
 
@@ -92,17 +104,26 @@ class SearchView extends React.Component{
 
 
     render(){
-        return (
-            
-        <div className="booking-form-box">
-        <form className="booking-form" onSubmit = {this.handleSubmit}>
-        
-        <Select label = "Stops" name = "stops" options = {this.state.stops}/>
-      
-            
-        </form>
-        </div>
-        )
+        if(this.state.fetchInProgress===true){
+            return (
+                <div className="booking-form-box" horizontal-align= "middle">
+                </div>
+
+            )
+        }else{
+            return (
+                
+            <div className="booking-form-box">
+                <form className="booking-form" onSubmit = {this.handleSubmit}>
+                
+                    <Select label = "Stops" name = "stops" options = {this.state.stops}/>
+                    <span className="input-grp">
+                            <button type="submit" className="btn btn-primary flight">Show Results</button>
+                    </span>
+                </form>
+            </div>
+
+        )}
     }
 }
 
