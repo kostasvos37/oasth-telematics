@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from "react-router";
-import qs from 'query-string';
+import Loader from 'react-loader-spinner'
 import "./forms.css"
 const MakeItem = function(X) {
     return <option>{X}</option>;
@@ -73,7 +73,7 @@ class SearchView extends React.Component{
             var returnedCoords = []
             for (var i in json){
                 returnedStops.push(json[i]["device_Name"])
-                returnedCoords.push([json[i]["lat"], json[i]["lon"]])
+                returnedCoords.push([parseFloat(json[i]["lat"]), parseFloat(json[i]["lon"])])
             }
             this.setState({stops: returnedStops })
             this.setState({coords: returnedCoords })
@@ -84,14 +84,28 @@ class SearchView extends React.Component{
 
     handleSubmit(event){
         event.preventDefault()
-        var form = event.target.elements
-        var selection = form.stops.value
-        console.log(this.state.stops.indexOf(selection)+1)
+        this.setState({fetchInProgress : true })
+        var selection = event.target.elements.stops.value
         
-        const query = `http://147.102.19.45:8080/services/getDeviceCoords/12${this.state.stops.indexOf(selection)+1}`
+        const stopNum = this.state.stops.indexOf(selection)
+        const stopPosition = this.state.coords[stopNum]
+        console.log(stopPosition)
+
+        const routesContainingStop = []
+        const query = "http://feed.opendata.imet.gr:23577/itravel/paths.json"
         fetch(query).then((response) => response.json())
         .then(json => {
-            console.log(json)
+            for (var i in json){
+                const coordsPath = json[i]["polyline"].split(" ").map(x => x.split(",")).forEach(pos => {
+                   
+                    //console.log(`pos = ${stopPosition[0]}, linePos = ${Math.abs(parseFloat(pos[0]))}, diff = ${parseFloat(pos[0])-stopPosition[0]}`)
+                    if((Math.abs(parseFloat(pos[0])-stopPosition[1])<0.0001) && (Math.abs(parseFloat(pos[1])-stopPosition[0])<0.0001) ){
+                        console.log(json[i]["Path_Name"])
+  
+                    } 
+                });
+            }
+        this.setState({fetchInProgress : false })
         });
     }
 
@@ -106,7 +120,13 @@ class SearchView extends React.Component{
     render(){
         if(this.state.fetchInProgress===true){
             return (
-                <div className="booking-form-box" horizontal-align= "middle">
+                <div className="booking-form-box">
+                    <Loader type="Oval"
+                        color="#00BFFF"
+                        height={100}
+                        width={100}
+                        timeout={3000} //3 secs
+                        />
                 </div>
 
             )

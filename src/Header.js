@@ -14,7 +14,6 @@ const NavLink = props => {
 
 class NavMenu extends Component {
     render() {
-        {
             return (
                     <ul>               
                         <NavLink label="• Home" to="/" location={this.props.location.pathname} />           
@@ -22,7 +21,6 @@ class NavMenu extends Component {
                     </ul>                         
             );
         }
-    }
 }
 
 

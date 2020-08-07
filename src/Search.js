@@ -5,10 +5,9 @@ class Home extends React.Component{
     render(){
         return (
             <div className = "grid_container">
-                    <SearchView/>                  
+                    <SearchView/>               
             </div>
         )
     }
 }
-
 export default Home;
