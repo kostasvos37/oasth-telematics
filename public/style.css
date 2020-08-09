@@ -14,7 +14,7 @@ h1{
 
 h2{
 
-	color:#1C3D5E;
+	color:white;
 	float:center;
 	text-align: center;
 	font-family: sans-serif;
@@ -56,14 +56,14 @@ nav ul li a{
 	line-height:50px;
 	font-family: sans-serif;
 }
-/*gia na antidraei otan erxetai se epafh me to pontiki*/
 nav ul li a:hover{
 	
 	background-color: rgb(28,61,94,.8);
 	border-top: .25px solid #C483A2;
 	border-bottom: .25px solid	#C483A2; 
+	text-decoration: none;
+	
 }
-/*gia to xroma toy home*/
 nav ul li a.active{
  	
  	color: #fff;

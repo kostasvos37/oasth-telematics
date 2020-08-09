@@ -9,7 +9,6 @@ const MakeItem = function(X) {
 class Select extends Component{    
 
     render(){
-
         return(
             <React.Fragment>
             <label>{this.props.label}</label>

@@ -17,7 +17,9 @@ class NavMenu extends Component {
             return (
                     <ul>               
                         <NavLink label="• Home" to="/" location={this.props.location.pathname} />           
-                        <NavLink label="• Search" to="/main" location={this.props.location.pathname} />               
+                        <NavLink label="• Search (All Stops)" to="/main" location={this.props.location.pathname} /> 
+                        <NavLink label="• Search (Location)" to="/location" location={this.props.location.pathname} />               
+              
                     </ul>                         
             );
         }
