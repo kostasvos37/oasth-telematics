@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { withRouter } from "react-router";
-import { Redirect } from 'react-router-dom'
 import Loader from 'react-loader-spinner'
 import "./forms.css"
 const MakeItem = function(X) {
@@ -104,7 +103,6 @@ class SearchView extends React.Component{
                         color="#00BFFF"
                         height={100}
                         width={100}
-                     //3 secs
                         />
 
             )
