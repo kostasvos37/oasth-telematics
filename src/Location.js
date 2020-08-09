@@ -8,6 +8,8 @@ class Location extends Component{
     constructor(props) {
         super(props);
         this.handlePopup = this.handlePopup.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+
         this.state = {
             lat: 40.631003384366842,
             lng: 22.953261341104508,
@@ -18,10 +20,15 @@ class Location extends Component{
     }
 
     handlePopup(event){
-
         this.setState  ({currentPos : event.latlng }) 
-        console.log(event.latlng)
     }
+
+    handleSubmit(){
+        this.props.history.push({
+            pathname: '/main'
+            })
+    }        
+    
     
 
 
@@ -33,7 +40,7 @@ class Location extends Component{
         return (
               <div className="box-about">
                   <h2>Pen du rum! Pen du rum! {"  "} 
-                  <button type="submit" className="btn btn-primary flight" disabled={!this.state.currentPos}>Confirm</button></h2>
+                  <button type="submit" className="btn btn-primary flight" onClick={this.handleSubmit} disabled={!this.state.currentPos}>Confirm</button></h2>
                   <Map className="map" center={position} zoom={this.state.zoom}  onClick={this.handlePopup}>
                       <TileLayer
                       attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
