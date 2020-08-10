@@ -28,7 +28,6 @@ class Location extends Component{
         var query = this.state.currentPos;
         
         const pos = qs.stringify(query);
-        alert(pos)
         this.props.history.push({
             pathname: `/main`,
             search: pos

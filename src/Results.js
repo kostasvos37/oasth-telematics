@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Map, TileLayer, Marker, Popup, Polyline } from 'react-leaflet'
+import { Map, TileLayer,Polyline } from 'react-leaflet'
 import Loader from 'react-loader-spinner'
 import "./Home.css"
 
