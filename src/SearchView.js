@@ -36,6 +36,8 @@ class SearchView extends React.Component{
     }
 
     componentDidMount(){
+        const queryString = window.location;
+        console.log(queryString);
         const query = "http://feed.opendata.imet.gr:23577/itravel/devices.json"
 
         this.setState  ({componentRender : "load" }) 
@@ -55,6 +57,7 @@ class SearchView extends React.Component{
     }
 
     handleSubmit(event){
+
         event.preventDefault()
         this.setState({componentRender : "load" })
         var selection = event.target.elements.stops.value

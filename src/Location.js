@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
+import { Map, TileLayer, Marker} from 'react-leaflet'
+import qs from 'query-string'
 import "./Home.css"
 import { withRouter } from 'react-router-dom';
 
@@ -24,8 +25,13 @@ class Location extends Component{
     }
 
     handleSubmit(){
+        var query = this.state.currentPos;
+        
+        const pos = qs.stringify(query);
+        alert(pos)
         this.props.history.push({
-            pathname: '/main'
+            pathname: `/main`,
+            search: pos
             })
     }        
     
@@ -34,9 +40,6 @@ class Location extends Component{
 
     render() {
         const position = [this.state.lat, this.state.lng]
-        var styles = {
-            marginRight: '20px'
-          };
         return (
               <div className="box-about">
                   <h2>Pen du rum! Pen du rum! {"  "} 
