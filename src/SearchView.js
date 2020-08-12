@@ -55,6 +55,7 @@ class SearchView extends React.Component{
 
     componentDidMount(){
         var [ ,queryString] = window.location.href.split("?");
+        const containsCoords = window.location.href.includes('?') ? true : false
         queryString = qs.parse(queryString)
         
         const query = "http://feed.opendata.imet.gr:23577/itravel/devices.json"
@@ -71,10 +72,11 @@ class SearchView extends React.Component{
             // frankly terrible
             this.setState({coords: returnedCoords })
             this.setState({stops: returnedStops })
-
-            if(!queryString){
+            console.log()
+            if(!containsCoords){
                 this.setState({renderStops : returnedStops}) 
                 this.setState({text: "Επιλέξτε Στάση"})
+                
             }else{
                 const closest = this.findTenClosest([parseFloat(queryString.lat), parseFloat(queryString.lng)], returnedCoords, returnedStops)
                 this.setState({renderStops: closest })
@@ -126,7 +128,6 @@ class SearchView extends React.Component{
         this.setState({componentRender : "routes" })
         }).catch(error => {
             alert(error)
-            alert(error)
             this.props.history.push({
                 pathname: '/'
             })
@@ -140,9 +141,10 @@ class SearchView extends React.Component{
         
         event.preventDefault()
         var selection = event.target.elements.routes.value
-        
-        const route = this.state.stops.indexOf(selection) + 1
-
+        // TODO : otan doulespoun ta link edw prepei na mpei to getpathID, getPathName
+        const route = this.state.routes.indexOf(selection) + 1
+        console.log(this.state.routes)
+        alert(`${route}, ${this.state.routes.indexOf(selection)}, ${this.state.routes[route-1]}`)
         this.props.history.push({
             pathname: '/result',
             search: qs.stringify({path: route})
