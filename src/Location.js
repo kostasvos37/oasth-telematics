@@ -41,8 +41,8 @@ class Location extends Component{
         const position = [this.state.lat, this.state.lng]
         return (
               <div className="box-about">
-                  <h2>Pen du rum! Pen du rum! {"  "} 
-                  <button type="submit" className="btn btn-primary flight" onClick={this.handleSubmit} disabled={!this.state.currentPos}>Confirm</button></h2>
+                  <h2>Επιλέξτε Τοποθεσία {"  "} 
+                  <button type="submit" className="btn btn-primary flight" onClick={this.handleSubmit} disabled={!this.state.currentPos}>Επιβεβαίωση</button></h2>
                   <Map className="map" center={position} zoom={this.state.zoom}  onClick={this.handlePopup}>
                       <TileLayer
                       attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'

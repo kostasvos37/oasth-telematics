@@ -1,10 +1,10 @@
 
 .box-about
 {
-	background-color: rgb(28,61,94,.8);
+	background-color: rgb(28,61,94,.9);
 	float:center;
 	max-width: 900px;
-	border: 7px solid rgb(28,61,94,.8);
+	border: 7px solid rgb(28,61,94,.9);
 	margin: 6% auto 0;
 	color: #fff;
 }

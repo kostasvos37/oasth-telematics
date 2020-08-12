@@ -5,50 +5,21 @@ class Home extends React.Component{
     render(){
         return (
         <div className="box-about">
-            <p> TODO : About Page, Here's a Melffy decklist:
+            <p> Καλωσήλθατε στην εφαρμογή αναζήτησης διαδρομών του ΟΑΣΘ που αναπτύχθηκε στα πλαίσια του μαθήματος Διαδύκτυο και Εφαρμογές 2020.
 
+            </p> 
+            <p>Η εφαρμογή δίνει τη δυνατότητα αναζήτησης διαδρομών που ξεκινούν από μια στάση που επιλέγετε, και εμφάνιση τους σε χάρτη.
+            </p> 
+            <p>Από την καρτέλα "ΑΝΑΖΗΤΗΣΗ (ΟΛΕΣ ΟΙ ΣΤΑΣΕΙΣ)", μπορείτε να δείτε όλες τις διαθέσιμες στάσεις. Επιλέγοντας μία από αυτές, εμφανίζονται οι διαδρομές που ξεκινούν από τη στάση αυτή. Επιλέγοντας τελικά μία από αυτές τις διαδρομές, εμφανίζεται στο χάρτη η διαδρομή αυτή.
+            </p>
+            <p> Εναλλακτικά, από την καρτέλα "ΑΝΑΖΗΤΗΣΗ (ΤΟΠΟΘΕΣΙΑ)", δίνεται η δυνατότητα επιλογής της τοποθεσίας στο χάρτη, ώστε να εμφανιστούν μόνο οι 10 κοντινότερες στάσεις στην τοποθεσία αυτή.</p>
+            <p>
+             Όλες οι τοποθεσίες είναι προσβάσιμες από URL, ώστε να μπορούν να μοιραστούν με άλλους χρήστες.
             </p>
             <p>
-            |- MONSTER CARDS (26 cards):
-   |- 3x Melffy Puppy
-   |- 3x Melffy Catty
-   |- 1x Melffy Pony
-   |- 3x Valerifawn, Mystical Beast of the Forest
-   |- 3x Nimble Beaver
-   |- 3x Rescue Cat
-   |- 2x Kalantosa, Mystical Beast of the Forest
-   |- 2x The Fabled Cerburrel
-   |- 2x Nimble Angler
-   |- 2x Ash Blossom & Joyous Spring
-   |- 1x Mine Mole
-   </p><p>
- |- SPELL CARDS (12 cards):
-   |- 3x Obedience Schooled
-   |- 3x Called by the Grave
-   |- 2x Melffy Tag
-   |- 2x Ayers Rock Sunrise
-   |- 1x Instant Fusion
-   |- 1x Foolish Burial
-   </p><p>
- |- TRAP CARDS (5 cards):
-   |- 2x Melffy Playhouse
-   |- 3x Infinite Impermanence
-</p><p>
- |- EXTRA DECK CARDS (15 cards):
-   |- 1x Fusionist
-   |- 1x Thousand-Eyes Restrict
-   |- 1x Naturia Beast
-   |- 1x Herald of the Arc Light
-   |- 1x Sky Cavalry Centaurea
-   |- 2x Number 64: Ronin Raccoon Sandayu
-   |- 1x Herald of Pure Light
-   |- 2x Melffy of the Forest
-   |- 1x Mekk-Knight Crusadia Avramax
-   |- 1x Knightmare Unicorn
-   |- 1x Missus Radiant
-   |- 1x I:P Masquerena
-   |- 1x Cross-Sheep
-</p>
+              Η εφαρμογή αναπτύχθηκε με React.js και έγινε χρήση διάφορων modules, τα πιο σημαντικά το Bootstrap για αρκετά stylings, το React-Leaflet για τον χάρτη, το geolib για πράξη με τις συντεταφμένες και το React-Router για το routing. Πληροφορίες λαμβάνονται από το API http://feed.opendata.imet.gr:23577/itravel/.
+            </p>
+            
         </div>
         )
     }

@@ -35,7 +35,7 @@ class SearchView extends React.Component{
             coords : [],
             renderStops : [],
             routes : [],
-            text : "Select Stop",
+            text : "Επιλέξτε Στάση",
             componentRender : "stops"
         }
     }
@@ -74,19 +74,24 @@ class SearchView extends React.Component{
 
             if(!queryString){
                 this.setState({renderStops : returnedStops}) 
+                this.setState({text: "Επιλέξτε Στάση"})
             }else{
                 const closest = this.findTenClosest([parseFloat(queryString.lat), parseFloat(queryString.lng)], returnedCoords, returnedStops)
                 this.setState({renderStops: closest })
-                this.setState({text: "Select Stop (10 Closest)"})
+                this.setState({text: "Επιλέξτε Στάση (10 Κοντινότερες)"})
             }
             
             this.setState({componentRender : "stops" }) 
+        }).catch(error =>{
+            alert(error)
+            this.props.history.push({
+                pathname: '/'
+            })
         });
 
     }
 
     handleSubmit(event){
-
         event.preventDefault()
         this.setState({componentRender : "load" })
         var selection = event.target.elements.stops.value
@@ -101,7 +106,7 @@ class SearchView extends React.Component{
             
             var routesContainingStop = []
             for (var i in json){
-                
+                /*
                 json[i]["polyline"].split(" ").map(x => x.split(",")).forEach(pos => {
                     // fml de dinoun akribws tis staseiw
                     // ti tha kanwwwwwwww
@@ -111,9 +116,20 @@ class SearchView extends React.Component{
                         return;
                     } 
                 });
+                */
+
+                if(parseInt(json[i]["Path_origin_device_id"]) === (stopNum + 11)){
+                    routesContainingStop.push(json[i]["Path_Name"])
+                }
             }
         this.setState({routes : routesContainingStop.filter((v, i, a) => a.indexOf(v) === i)})
         this.setState({componentRender : "routes" })
+        }).catch(error => {
+            alert(error)
+            alert(error)
+            this.props.history.push({
+                pathname: '/'
+            })
         });
     }
 
@@ -121,9 +137,15 @@ class SearchView extends React.Component{
 
 
     handleSelectRoute(event){
-        //this.setState({componentRender : "redirect" }) 
+        
+        event.preventDefault()
+        var selection = event.target.elements.routes.value
+        
+        const route = this.state.stops.indexOf(selection) + 1
+
         this.props.history.push({
-            pathname: '/result?route=1'
+            pathname: '/result',
+            search: qs.stringify({path: route})
             })
         }
 
@@ -145,17 +167,16 @@ class SearchView extends React.Component{
                 
                     <Select label = {this.state.text} name = "stops" options = {this.state.renderStops}/>
                     <span className="input-grp">
-                            <button type="submit" className="btn btn-primary flight">Show Results</button>
+                            <button type="submit" className="btn btn-primary flight">Αναζήτηση</button>
                     </span>
                 </form>
 
         )}else if(this.state.componentRender === "routes"){
             return(
                 <form className="booking-form" onSubmit = {this.handleSelectRoute} >
-                    
-                        <Select label = "Select Route" name = "routes" options = {this.state.routes}/>
+                        <Select label = "Επιλέξτε Διαδρομή" name = "routes" options = {this.state.routes}/>
                         <span className="input-grp">
-                                <button type="submit" className="btn btn-primary flight">Show Results</button>
+                                <button type="submit" className="btn btn-primary flight">Αναζήτηση</button>
                         </span>
                 </form>
             )

@@ -16,9 +16,9 @@ class NavMenu extends Component {
     render() {
             return (
                     <ul>               
-                        <NavLink label="• Home" to="/" location={this.props.location.pathname} />           
-                        <NavLink label="• Search (All Stops)" to="/main" location={this.props.location.pathname} /> 
-                        <NavLink label="• Search (Location)" to="/location" location={this.props.location.pathname} />               
+                        <NavLink label="• Πληροφοριες" to="/" location={this.props.location.pathname} />           
+                        <NavLink label="• Αναζητηση (Ολες οι στασεις)" to="/main" location={this.props.location.pathname} /> 
+                        <NavLink label="• Αναζητηση (Τοποθεσια)" to="/location" location={this.props.location.pathname} />               
               
                     </ul>                         
             );
@@ -30,8 +30,8 @@ class Header extends Component {
     render() {
         return (            
             <React.Fragment>
-                <h1>Internet and Applications 2020 Project</h1>
-                <h2>National Technical University of Athens</h2>
+                <h1>Διαδίκτυο και Εφαρμογές - Πρότζεκτ 2020</h1>
+                <h2>Εθνικό Μετσόβιο Πολυτεχνείο</h2>
                 <nav>
                     <UserConsumer>
                     { context => 
@@ -52,5 +52,3 @@ class Header extends Component {
 
 
 export default withRouter(Header);
-
-
