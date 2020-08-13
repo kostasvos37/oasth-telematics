@@ -6,7 +6,7 @@ class Home extends React.Component{
         return (
             <div className = "grid_container">
                 
-                <div className="booking-form-box">
+                <div className="searching-form-box">
                     <SearchView/>           
                 </div>    
             </div>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {getDistance, getPreciseDistance} from 'geolib'
+import {getDistance} from 'geolib'
 import { withRouter } from "react-router";
 import Loader from 'react-loader-spinner';
 import qs from 'query-string';
@@ -9,7 +9,6 @@ const MakeItem = function(X) {
 };
 
 class Select extends Component{    
-
     render(){
         return(
             <React.Fragment>
@@ -106,22 +105,9 @@ class SearchView extends React.Component{
         const query = "http://feed.opendata.imet.gr:23577/itravel/paths.json"
         fetch(query).then((response) => response.json())
         .then(json => {
-            
             var routesContainingStop = []
             var ids = []
             for (var i in json){
-                /*
-                json[i]["polyline"].split(" ").map(x => x.split(",")).forEach(pos => {
-                    // fml de dinoun akribws tis staseiw
-                    // ti tha kanwwwwwwww
-                    //console.log(`pos = ${stopPosition[0]}, linePos = ${Math.abs(parseFloat(pos[0]))}, diff = ${parseFloat(pos[0])-stopPosition[0]}`)
-                    if((Math.abs(parseFloat(pos[0])-stopPosition[1])<0.0001) && (Math.abs(parseFloat(pos[1])-stopPosition[0])<0.0001) ){
-                        routesContainingStop.push(json[i]["Path_Name"])
-                        return;
-                    } 
-                });
-                */
-
                 if(parseInt(json[i]["Path_origin_device_id"]) === (stopNum + 11)){
                     routesContainingStop.push(json[i]["Path_Name"])
                     ids.push(json[i]["Path_id"])
@@ -142,14 +128,14 @@ class SearchView extends React.Component{
 
 
     handleSelectRoute(event){
-        
         event.preventDefault()
-        var selection = event.target.elements.routes.value
-        const routeId = this.state.routeIds[this.state.routes.indexOf(selection)]
-        
-        this.props.history.push({
-            pathname: '/result',
-            search: qs.stringify({path: routeId})
+            var selection = event.target.elements.routes.value
+            const routeId = this.state.routeIds[this.state.routes.indexOf(selection)]
+            const type = event.target.elements.check.value
+            
+            this.props.history.push({
+                pathname: '/result',
+                search: qs.stringify({path: routeId, type: type})
             })
         }
 
@@ -166,8 +152,7 @@ class SearchView extends React.Component{
             )
         }else if(this.state.componentRender==="stops"){
             return (
-                
-                <form className="booking-form" onSubmit = {this.handleSubmit}>
+                <form className="searching-form" onSubmit = {this.handleSubmit}>
                 
                     <Select label = {this.state.text} name = "stops" options = {this.state.renderStops}/>
                     <span className="input-grp">
@@ -177,8 +162,12 @@ class SearchView extends React.Component{
 
         )}else if(this.state.componentRender === "routes"){
             return(
-                <form className="booking-form" onSubmit = {this.handleSelectRoute} >
+                <form className="searching-form" onSubmit = {this.handleSelectRoute} >
                         <Select label = "Επιλέξτε Διαδρομή" name = "routes" options = {this.state.routes}/>
+                        <div className="radio-btn">
+                            <input type="radio" className="btn" name="check" value = "continuous" checked onChange = {() => {}}/><span>Συνεχόμενη</span>
+                            <input type="radio" className="btn" name="check" value = "points"/><span>Σημεία</span> 
+                        </div>
                         <span className="input-grp">
                                 <button type="submit" className="btn btn-primary flight">Αναζήτηση</button>
                         </span>
@@ -187,5 +176,4 @@ class SearchView extends React.Component{
         }
     }
 }
-
 export default withRouter(SearchView);
