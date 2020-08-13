@@ -35,6 +35,7 @@ class SearchView extends React.Component{
             coords : [],
             renderStops : [],
             routes : [],
+            routeIds: [],
             text : "Επιλέξτε Στάση",
             componentRender : "stops"
         }
@@ -107,6 +108,7 @@ class SearchView extends React.Component{
         .then(json => {
             
             var routesContainingStop = []
+            var ids = []
             for (var i in json){
                 /*
                 json[i]["polyline"].split(" ").map(x => x.split(",")).forEach(pos => {
@@ -122,9 +124,11 @@ class SearchView extends React.Component{
 
                 if(parseInt(json[i]["Path_origin_device_id"]) === (stopNum + 11)){
                     routesContainingStop.push(json[i]["Path_Name"])
+                    ids.push(json[i]["Path_id"])
                 }
             }
-        this.setState({routes : routesContainingStop.filter((v, i, a) => a.indexOf(v) === i)})
+        this.setState({routes : routesContainingStop})
+        this.setState({routeIds : ids})
         this.setState({componentRender : "routes" })
         }).catch(error => {
             alert(error)
@@ -141,13 +145,11 @@ class SearchView extends React.Component{
         
         event.preventDefault()
         var selection = event.target.elements.routes.value
-        // TODO : otan doulespoun ta link edw prepei na mpei to getpathID, getPathName
-        const route = this.state.routes.indexOf(selection) + 1
-        console.log(this.state.routes)
-        alert(`${route}, ${this.state.routes.indexOf(selection)}, ${this.state.routes[route-1]}`)
+        const routeId = this.state.routeIds[this.state.routes.indexOf(selection)]
+        
         this.props.history.push({
             pathname: '/result',
-            search: qs.stringify({path: route})
+            search: qs.stringify({path: routeId})
             })
         }
 
