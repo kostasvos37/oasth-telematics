@@ -17,7 +17,7 @@
 1. Αντιγράφετε το repository σε ένα φάκελο μέσω της εντολής :
 
 ```
-https://github.com/kostasvos37/appathon-ntua-project.git
+git clone https://github.com/kostasvos37/appathon-ntua-project.git
 ```
 
 2. Μεταφέρεστε στο φάκελο αυτό και κάνετε εγκατάσταση των Node js modules μέ την εντολή :
