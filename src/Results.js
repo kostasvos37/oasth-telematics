@@ -74,11 +74,9 @@ class Results extends Component{
                 // Fetching endpoint names
                 fetch(`/services/getDeviceName/${parseInt(start)}`).then((response) => response.text()).then(text =>{
                     this.setState({startName : text})
-                    console.log(this.state.startName === "")
                 })
                 fetch(`/services/getDeviceName/${parseInt(end)}`).then((response) => response.text()).then(text =>{
                     this.setState({endName : text})
-                    console.log(this.state.endName === "")
                 })
 
                 this.setState({loading3 : false})
@@ -94,15 +92,15 @@ class Results extends Component{
 
     renderMarkers(markers) {
         return markers.map(
-            (marker) => {
-                return <Marker  position={marker} ></Marker>
+            (marker, index) => {
+                return <Marker ley={index} position={marker} />
             }
         )
     }
 
 
+
     render() {
-        const position = [this.state.lat, this.state.lng]
         if (this.state.loading1 || this.state.loading2 || this.state.loading3 || !this.state.startName || !this.state.endName){
           return (
             <div className="box-about">
@@ -142,6 +140,10 @@ class Results extends Component{
               </div>
           )
         }else{
+            const position = getCenter([
+                {latitude : this.state.coords[0][0], longitude: this.state.coords[0][1]},
+                {latitude : this.state.coords[this.state.coords.length-1][0], longitude: this.state.coords[this.state.coords.length-1][1]}
+            ])
             return (
                 <div className="box-about">
                     <h1>{this.state.pathName}</h1>
@@ -150,9 +152,9 @@ class Results extends Component{
                         attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                         />
-                        {this.renderMarkers(this.state.coords)}
+                        {this.renderMarkers(this.state.coords.slice(1, this.state.coords.length-2))}
                         <Marker position={this.state.coords[0]} >
-                          <Popup>
+                          <Popup >
                               Αφετηρία : {this.state.startName}
                           </Popup>
                         </Marker>

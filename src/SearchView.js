@@ -72,7 +72,6 @@ class SearchView extends React.Component{
             // frankly terrible
             this.setState({coords: returnedCoords })
             this.setState({stops: returnedStops })
-            console.log()
             if(!containsCoords){
                 this.setState({renderStops : returnedStops}) 
                 this.setState({text: "Επιλέξτε Στάση"})
@@ -99,8 +98,6 @@ class SearchView extends React.Component{
         var selection = event.target.elements.stops.value
         
         const stopNum = this.state.stops.indexOf(selection)
-        const stopPosition = this.state.coords[stopNum]
-        console.log(stopPosition)
 
         const query = "http://feed.opendata.imet.gr:23577/itravel/paths.json"
         fetch(query).then((response) => response.json())
