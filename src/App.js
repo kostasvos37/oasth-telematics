@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import Header from './Header';
 import Location from './Location';
-import Main from './Search';
+import Main from './SearchView';
 import Home from './Home';
 import Results from './Results' 
 import { UserProvider } from './UserContext';

@@ -97,9 +97,7 @@ class Results extends Component{
             }
         )
     }
-
-
-
+    
     render() {
         if (this.state.loading1 || this.state.loading2 || this.state.loading3 || !this.state.startName || !this.state.endName){
           return (

@@ -34,8 +34,6 @@ class Location extends Component{
             })
     }        
     
-    
-
 
     render() {
         const position = [this.state.lat, this.state.lng]
